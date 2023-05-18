@@ -7,17 +7,17 @@
 #include "include/utils.h"
 
 int main(void) 
-{
-    struct DadosTarefa *dados;
-    dados = le_tarefas("data.txt");
-
-    printf("%s \n", dados[0].observacao);
-
-
-    free(dados);
-
+{  
+    print_tela_inicial(le_tarefas("data.txt"));
     return 0;
 }
+
+void print_tela_inicial(struct DadosTarefa *data)
+{
+    system(clear_terminal);
+    draw_menu_header("TAREFAS");
+}
+
 
 struct DadosTarefa *le_tarefas(char *filename) 
 {
@@ -33,7 +33,7 @@ struct DadosTarefa *le_tarefas(char *filename)
     while (fgets(buffer, sizeof(buffer), dados) != NULL) 
     {
         buffer_separado = strip_data(buffer, ",");
-        Tarefas[cont].tarefa = buffer_separado[0];
+        Tarefas[cont].titulo = buffer_separado[0];
         Tarefas[cont].observacao = buffer_separado[1];
         Tarefas[cont].data_criacao = buffer_separado[2];
         Tarefas[cont].data_final = buffer_separado[3];

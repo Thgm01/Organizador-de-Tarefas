@@ -3,6 +3,7 @@
 
 #include "include/utils.h"
 #include "include/ui.h"
+#include "include/main.h"
 
 void draw_menu_header(char* title)
 {
