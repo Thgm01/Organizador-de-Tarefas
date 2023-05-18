@@ -6,13 +6,13 @@
 #include "include/ui.h"
 #include "include/utils.h"
 
-
 int main(void) 
 {
     struct DadosTarefa *dados;
     dados = le_tarefas("data.txt");
 
-    printf("%s\n", dados[0].observacao);
+    printf("%s \n", dados[0].observacao);
+
 
     free(dados);
 
@@ -32,7 +32,6 @@ struct DadosTarefa *le_tarefas(char *filename)
 
     while (fgets(buffer, sizeof(buffer), dados) != NULL) 
     {
-        printf("cont %d", cont);
         buffer_separado = strip_data(buffer, ",");
         Tarefas[cont].tarefa = buffer_separado[0];
         Tarefas[cont].observacao = buffer_separado[1];
@@ -40,15 +39,11 @@ struct DadosTarefa *le_tarefas(char *filename)
         Tarefas[cont].data_final = buffer_separado[3];
         Tarefas[cont].status = buffer_separado[4][0];
         cont++;
-        Tarefas = (struct DadosTarefa *) realloc(Tarefas, 1 * sizeof(struct DadosTarefa));
+        Tarefas = (struct DadosTarefa *) realloc(Tarefas,(cont+1)*sizeof(struct DadosTarefa));
     }
     fclose(dados);
 
-    struct DadosTarefa *res = Tarefas;
-
-    printf("teste: %s", res[0].tarefa);
-
-    return res;
+    return Tarefas;
 }
 
 char **strip_data(char *data_to_strip, char *delim) 
