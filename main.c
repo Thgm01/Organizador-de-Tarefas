@@ -132,7 +132,7 @@ struct DadosTarefa *le_tarefas()
 
     while (fgets(buffer, sizeof(buffer), dados) != NULL) 
     {
-        buffer_separado = strip_data(buffer, ",");
+        buffer_separado = strip_data(buffer);
         Tarefas[cont].titulo = buffer_separado[0];
         Tarefas[cont].observacao = buffer_separado[1];
         Tarefas[cont].data_criacao = buffer_separado[2];
