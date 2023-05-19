@@ -1,9 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+#include <stdlib.h>
 
-#include "include/utils.h"
+#include "include/ui_functions.h"
 #include "include/ui.h"
+#include "include/main.h"
+#include "include/file_functions.h"
 
 void new_line()
 {
@@ -220,6 +223,7 @@ void draw_options()
     center_text(SIZE_MENU, "5 - Sair do Programa", 1);
     
 }
+
 
 char *dia_atual()
 {

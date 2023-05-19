@@ -1,5 +1,5 @@
-#ifndef _UTILS_H_
-#define _UTILS_H_
+#ifndef _UI_FUNCTIONS_H_
+#define _UI_FUNCTIONS_H_
 
 #define RB "\e(0\x6a\e(B" // 188 Right Bottom corner
 #define RT "\e(0\x6b\e(B" // 187 Right Top corner
@@ -31,10 +31,8 @@ void write_date(int qnt_tasks, char ** inicial_dates, char** final_dates);
 void write_status(int qnt_tasks, int *status);
 void draw_botton_tasks(int qnt_tasks);
 void draw_options();
+
 char *dia_atual();
-
-
-
 
 
 

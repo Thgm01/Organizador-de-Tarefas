@@ -19,11 +19,9 @@ struct DadosTarefa
 
 };
 
-FILE *open_file(char* mode);
 struct DadosTarefa *le_tarefas();
 char **strip_data(char *data_to_strip); 
 void print_tela_inicial(struct DadosTarefa *data);
-int size_struct(struct DadosTarefa *stc);
 void print_all_tasks(struct DadosTarefa *data);
 void adiciona_tarefa();
 

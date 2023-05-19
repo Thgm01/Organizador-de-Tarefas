@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "include/utils.h"
+#include "include/ui_functions.h"
 #include "include/ui.h"
 #include "include/main.h"
+#include "include/file_functions.h"
 
 void draw_menu_header(char* title)
 {

@@ -5,12 +5,14 @@
 
 #include "include/main.h"
 #include "include/ui.h"
-#include "include/utils.h"
+#include "include/ui_functions.h"
+#include "include/file_functions.h"
+
 
 int main(void) 
 {
     int opt=-1;
-    struct DadosTarefa *dados = le_tarefas("data.txt");
+    struct DadosTarefa *dados = le_tarefas();
     do{
         opt=-1;
 
@@ -24,6 +26,7 @@ int main(void)
         {
         case 1:
             adiciona_tarefa();
+            dados = le_tarefas();
             break;
         
         case 2:
@@ -62,11 +65,14 @@ void adiciona_tarefa()
     FILE *dados = open_file("a");
     char *perguntas[4] = {"o titulo da tarefa: ", "a descricao da tarefa: ", "a data final[dd/mm/aaa]: ", "status: "};
     char respostas[4][SIZE_TASK-2];
+    getchar();
+
     for(int i=0; i<4; i++)
     {
+        char *buffer[SIZE_TASK-2];
         printf("Digite %s", perguntas[i]);
-        // getchar();
-        gets(respostas[i]);
+        fgets(respostas[i], (SIZE_TASK-2), stdin);
+        respostas[i][strcspn(respostas[i], "\n")] = 0;
 
     }
 
@@ -78,14 +84,6 @@ void adiciona_tarefa()
 
     fclose(dados);
     
-}
-
-void print_tela_inicial(struct DadosTarefa *data)
-{
-    system(clear_terminal);
-    draw_menu_header("TAREFAS");
-    print_all_tasks(data);
-    draw_menu_options();
 }
 
 void print_all_tasks(struct DadosTarefa *data) //terminar
@@ -108,15 +106,12 @@ void print_all_tasks(struct DadosTarefa *data) //terminar
     
 }
 
-int size_struct(struct DadosTarefa *stc)
+void print_tela_inicial(struct DadosTarefa *data)
 {
-    int size=0;
-    while (stc[size].titulo !=NULL)
-    {
-        size++;
-    }
-    
-    return size;
+    system(clear_terminal);
+    draw_menu_header("TAREFAS");
+    print_all_tasks(data);
+    draw_menu_options();
 }
 
 struct DadosTarefa *le_tarefas()
@@ -159,26 +154,3 @@ char **strip_data(char *data_to_strip)
 
     return res;
 }
-
-FILE *open_file(char *mode) {
-  FILE *f;
-  f = fopen(FILENAME, mode);
-  if (!f) {
-    f = open_file("w");
-  }
-  return f;
-}
-
-// char *teste[] = {"Fazer o ex1", "Terminar relatorios"};
-// char * titles[] = {"Tarefa 1", "Tarefa 2"};
-// char *descriptions[]= teste[];
-// char *initial_dates[] = {"18/03/2023", "20/04/2023"};
-// char *final_dates[] = {"26/05/2023", "12/06/2023"};
-// int status[] = {1, 3};
-// system(clear_terminal);
-
-// draw_menu_header("TAREFAS");
-
-// draw_tasks(2, titles, descriptions, initial_dates, final_dates, status);
-// draw_tasks(2, titles, descriptions, initial_dates, final_dates, status);
-// draw_menu_options();
