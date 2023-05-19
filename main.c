@@ -65,8 +65,9 @@ void adiciona_tarefa()
     for(int i=0; i<4; i++)
     {
         printf("Digite %s", perguntas[i]);
-        getchar();
-        fgets(respostas[i], SIZE_TASK-2, stdin);
+        // getchar();
+        gets(respostas[i]);
+
     }
 
     char formated[4*SIZE_TASK];
@@ -118,7 +119,7 @@ int size_struct(struct DadosTarefa *stc)
     return size;
 }
 
-struct DadosTarefa *le_tarefas(char *filename) 
+struct DadosTarefa *le_tarefas()
 {
     struct DadosTarefa *Tarefas = (struct DadosTarefa *)malloc(1*sizeof(struct DadosTarefa));
 
@@ -145,7 +146,7 @@ struct DadosTarefa *le_tarefas(char *filename)
     return Tarefas;
 }
 
-char **strip_data(char *data_to_strip, char *delim) 
+char **strip_data(char *data_to_strip) 
 {
     char *stripped_data[5];
 
