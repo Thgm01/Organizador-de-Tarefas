@@ -48,19 +48,14 @@ int size_file()
 void rewrite_file(int line)
 {
   int size = size_file();
-  printf("%d\n", size);
-
-  sleep(5e-2);
 
   FILE *dados = open_file("r");
-  printf("Teste");
 
   char buffer[size][SIZE_TASK*4];
 
   for(int i=0; i<size; i++)
   {
     fgets(buffer[i], SIZE_TASK*4, dados);
-    printf("%s", buffer[i]);
   }
   fclose(dados);
 
