@@ -1,15 +1,82 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #include "include/main.h"
 #include "include/ui.h"
 #include "include/utils.h"
 
 int main(void) 
-{  
-    print_tela_inicial(le_tarefas("data.txt"));
+{
+    int opt=-1;
+    struct DadosTarefa *dados = le_tarefas("data.txt");
+    do{
+        opt=-1;
+
+        print_tela_inicial(dados);
+
+        printf("\nDigite sua opção: ");
+        scanf("%d", &opt);
+               
+
+        switch (opt)
+        {
+        case 1:
+            adiciona_tarefa();
+            break;
+        
+        case 2:
+            
+            break;
+
+
+        case 3:
+            
+            break;
+
+        case 4:
+            
+            break;
+
+        default:
+            draw_menu_header("VALOR INVÁLIDO!");
+            break;
+        }
+
+
+
+        sleep(5e-3);
+    }while (opt != 5);
+
+    free(dados);
+
+    system(clear_terminal);
+    draw_menu_header("Programa Encerrado!");
+
     return 0;
+}
+
+void adiciona_tarefa()
+{
+    FILE *dados = open_file("a");
+    char *perguntas[4] = {"o titulo da tarefa: ", "a descricao da tarefa: ", "a data final[dd/mm/aaa]: ", "status: "};
+    char respostas[4][SIZE_TASK-2];
+    for(int i=0; i<4; i++)
+    {
+        printf("Digite %s", perguntas[i]);
+        getchar();
+        fgets(respostas[i], SIZE_TASK-2, stdin);
+    }
+
+    char formated[4*SIZE_TASK];
+
+    snprintf(formated, sizeof(formated), "%s,%s,%s,%s,%s\n", respostas[0], respostas[1], dia_atual(), respostas[2], respostas[3]);
+    printf("%s\n", formated);
+    fprintf(dados, "%s", formated);
+
+    fclose(dados);
+    
 }
 
 void print_tela_inicial(struct DadosTarefa *data)
@@ -55,7 +122,7 @@ struct DadosTarefa *le_tarefas(char *filename)
 {
     struct DadosTarefa *Tarefas = (struct DadosTarefa *)malloc(1*sizeof(struct DadosTarefa));
 
-    FILE *dados = open_file(filename, "r");
+    FILE *dados = open_file("r");
 
     char buffer[SIZE_TASK * 4];
     char **buffer_separado;
@@ -92,11 +159,11 @@ char **strip_data(char *data_to_strip, char *delim)
     return res;
 }
 
-FILE *open_file(char *filename, char *mode) {
+FILE *open_file(char *mode) {
   FILE *f;
-  f = fopen(filename, mode);
+  f = fopen(FILENAME, mode);
   if (!f) {
-    f = open_file(filename, "w");
+    f = open_file("w");
   }
   return f;
 }

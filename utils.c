@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 
 #include "include/utils.h"
 #include "include/ui.h"
@@ -216,4 +217,21 @@ void draw_options()
     center_text(SIZE_MENU, "2 - Editar Tarefa",1);
     center_text(SIZE_MENU, "3 - Excluir Tarefa",1);
     center_text(SIZE_MENU, "4 - Alterar Status da tarefa", 1);
+    center_text(SIZE_MENU, "5 - Sair do Programa", 1);
+    
+}
+
+char *dia_atual()
+{
+    time_t t = time(NULL);
+    struct tm *data = localtime(&t);
+
+    int dia = data->tm_mday;
+    int mes = data->tm_mon + 1;
+    int ano = data->tm_year + 1900;
+    
+    char formatado[15];
+    snprintf(formatado, sizeof(formatado), "%d/%d/%d",dia, mes, ano);
+    char *aux = formatado;
+    return aux;
 }
