@@ -14,27 +14,25 @@ void draw_menu_header(char* title)
 }
 
 void draw_tasks(int qnt_tasks, char ** titles, char **descriptions, char **initial_dates, char **final_dates, int *status)
+{    
+    draw_top_tasks(qnt_tasks);
+    draw_task_titles(qnt_tasks, titles);
+    draw_tasks_cross(qnt_tasks);
+    write_descriptions(qnt_tasks, descriptions);
+    draw_tasks_cross(qnt_tasks);
+    write_date(qnt_tasks, initial_dates, final_dates);
+    draw_tasks_cross(qnt_tasks);
+    write_status(qnt_tasks, status);
+    draw_botton_tasks(qnt_tasks);
+    draw_blank_line(SIZE_MENU); 
+}
+
+void draw_empty_tasks()
 {
-    if(qnt_tasks == 0)
-    {
-        draw_blank_line(SIZE_MENU);
-        center_text(SIZE_MENU, "Nenhuma Tarefa!", 1);
-        draw_blank_line(SIZE_MENU);
-        draw_blank_line(SIZE_MENU);
-    }
-    else 
-    {
-        draw_top_tasks(qnt_tasks);
-        draw_task_titles(qnt_tasks, titles);
-        draw_tasks_cross(qnt_tasks);
-        write_descriptions(qnt_tasks, descriptions);
-        draw_tasks_cross(qnt_tasks);
-        write_date(qnt_tasks, initial_dates, final_dates);
-        draw_tasks_cross(qnt_tasks);
-        write_status(qnt_tasks, status);
-        draw_botton_tasks(qnt_tasks);
-        draw_blank_line(SIZE_MENU);
-    }
+    draw_blank_line(SIZE_MENU);
+    center_text(SIZE_MENU, "Nenhuma Tarefa!", 1);
+    draw_blank_line(SIZE_MENU);
+    draw_blank_line(SIZE_MENU);
 }
 
 void draw_menu_options()

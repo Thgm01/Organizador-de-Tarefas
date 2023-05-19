@@ -16,8 +16,40 @@ void print_tela_inicial(struct DadosTarefa *data)
 {
     system(clear_terminal);
     draw_menu_header("TAREFAS");
+    print_all_tasks(data);
+    draw_menu_options();
 }
 
+void print_all_tasks(struct DadosTarefa *data) //terminar
+{
+    int size = size_struct(data);
+    if(size == 0)
+    {
+        draw_empty_tasks();
+    }
+    else
+    {
+        int aux = 0;
+        // char **titles = {data[0].titulo, data[1].titulo};
+        // char **descriptions = {data[0].observacao, data[1].observacao};
+        // char **ini_date = {data[0].data_criacao, data[1].data_criacao};
+        // char **fin_date = {data[0].data_final, data[1].data_final}; 
+        // int *status = {atoi(data[0].status), atoi(data[1].status)};
+        // draw_tasks(2, titles, descriptions, ini_date, fin_date, status);
+    }
+    
+}
+
+int size_struct(struct DadosTarefa *stc)
+{
+    int size=0;
+    while (stc[size].titulo !=NULL)
+    {
+        size++;
+    }
+    
+    return size;
+}
 
 struct DadosTarefa *le_tarefas(char *filename) 
 {

@@ -21,6 +21,8 @@ FILE *open_file(char* filename, char* mode);
 struct DadosTarefa *le_tarefas(char *filename);
 char **strip_data(char *data_to_strip, char *delim); 
 void print_tela_inicial(struct DadosTarefa *data);
+int size_struct(struct DadosTarefa *stc);
+void print_all_tasks(struct DadosTarefa *data);
 
 
 #endif

@@ -149,7 +149,7 @@ void write_descriptions(int qnt_tasks, char ** descriptions)
     new_line();
 }
 
-void write_date(int qnt_tasks, char ** inicial_dates, char** final_dates) // Falta terminar
+void write_date(int qnt_tasks, char ** inicial_dates, char** final_dates)
 {
     draw_vertical_line(1);
     for(int i=0; i<qnt_tasks; i++)
