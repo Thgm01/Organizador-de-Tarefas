@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+
 
 #include "include/ui_functions.h"
 #include "include/ui.h"
@@ -24,4 +26,50 @@ int size_struct(struct DadosTarefa *stc)
     }
     
     return size;
+}
+
+int size_file()
+{
+  FILE *dados = open_file("r");
+
+  char lixo[SIZE_TASK*4];
+
+  int cont = 0;
+  while (fgets(lixo, sizeof(lixo), dados) != NULL) 
+  {
+    cont++;
+  }
+  return cont;
+
+  fclose(dados);
+
+}
+
+void rewrite_file(int line)
+{
+  int size = size_file();
+  printf("%d\n", size);
+
+  sleep(5e-2);
+
+  FILE *dados = open_file("r");
+  printf("Teste");
+
+  char buffer[size][SIZE_TASK*4];
+
+  for(int i=0; i<size; i++)
+  {
+    fgets(buffer[i], SIZE_TASK*4, dados);
+    printf("%s", buffer[i]);
+  }
+  fclose(dados);
+
+  FILE *dados_2 = open_file("w");
+  for(int i=0; i<size; i++)
+  {
+    if(i != line-1){
+      fprintf(dados_2, "%s", buffer[i]);
+    }
+  }
+  fclose(dados_2);
 }

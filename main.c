@@ -24,18 +24,17 @@ int main(void)
 
         switch (opt)
         {
-        case 1:
+        case 1: //adiciona tarefa
             adiciona_tarefa();
             dados = le_tarefas();
             break;
-        
+
         case 2:
-            
+            // edita_tarefa();            
             break;
 
-
         case 3:
-            
+            exclue_tarefa();
             break;
 
         case 4:
@@ -153,4 +152,18 @@ char **strip_data(char *data_to_strip)
     char **res = stripped_data;
 
     return res;
+}
+
+void exclue_tarefa()
+{
+    int task_number;
+    printf("Qual Tarefa deseja excluir? ");
+    scanf("%d", &task_number);
+
+    rewrite_file(task_number);
+
+
+    printf("Tarefa de numero %d excluida!", task_number);
+    sleep(5e-3);
+    sleep(2);
 }

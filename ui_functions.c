@@ -224,7 +224,6 @@ void draw_options()
     
 }
 
-
 char *dia_atual()
 {
     time_t t = time(NULL);
