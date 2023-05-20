@@ -24,13 +24,13 @@ int main(void)
 
         switch (opt)
         {
-        case 1: //adiciona tarefa
+        case 1: //
             adiciona_tarefa();
             dados = le_tarefas();
             break;
 
         case 2:
-            // edita_tarefa();            
+            edita_tarefa();            
             break;
 
         case 3:
@@ -121,19 +121,17 @@ struct DadosTarefa *le_tarefas()
 
     FILE *dados = open_file("r");
 
-    char buffer[SIZE_TASK * 4];
-    char **buffer_separado;
+    char buffer[20][SIZE_TASK*4];
 
     int cont = 0;
 
-    while (fgets(buffer, sizeof(buffer), dados) != NULL) 
+    while (fgets(buffer[cont], sizeof(buffer), dados) != NULL) 
     {
-        buffer_separado = strip_data(buffer);
-        Tarefas[cont].titulo = buffer_separado[0];
-        Tarefas[cont].observacao = buffer_separado[1];
-        Tarefas[cont].data_criacao = buffer_separado[2];
-        Tarefas[cont].data_final = buffer_separado[3];
-        Tarefas[cont].status = buffer_separado[4][0];
+        Tarefas[cont].titulo = strtok(buffer[cont], ",");
+        Tarefas[cont].observacao = strtok(NULL, ",");
+        Tarefas[cont].data_criacao = strtok(NULL, ",");
+        Tarefas[cont].data_final = strtok(NULL, ",");
+        Tarefas[cont].status = strtok(NULL, ",");
         cont++;
         Tarefas = (struct DadosTarefa *) realloc(Tarefas,(cont+1)*sizeof(struct DadosTarefa));
     }
@@ -165,4 +163,32 @@ void exclue_tarefa()
     rewrite_file(task_number);
 
     printf("Tarefa de numero %d excluida!", task_number);
+}
+
+void edita_tarefa()
+{
+    draw_menu_edit_options();
+    int opt;
+    printf("Digite a opcao desejada: ");
+    scanf("%d", &opt);
+    
+    int task_number;
+    printf("Digite a Tarefa que deseja editar: ");
+    scanf("%d", &task_number);
+    printf("%d\n", task_number);
+
+    struct DadosTarefa *fas = le_tarefas();
+
+    char *titulo[1] = {fas[task_number].titulo};
+    char *desc[1] =  {fas[task_number].observacao};
+    char *dat_cria[1] = {fas[task_number].data_criacao};
+    char *data_final[1] = {fas[task_number].data_final};
+    int status[2] = {1,2};
+
+    draw_tasks(1, titulo, desc, dat_cria , data_final, status);
+
+    int lixo;
+    scanf("%d", &lixo);    
+
+    free(fas);
 }

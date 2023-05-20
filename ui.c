@@ -45,3 +45,12 @@ void draw_menu_options()
     draw_botton_line(SIZE_MENU, 1);
 
 }
+
+void draw_menu_edit_options()
+{
+    system(clear_terminal);
+    draw_menu_header("EDITAR TAREFA");
+    draw_edit_options();
+    draw_blank_line(SIZE_MENU);
+    draw_botton_line(SIZE_MENU, 1);
+}

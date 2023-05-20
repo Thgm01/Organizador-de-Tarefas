@@ -31,6 +31,8 @@ void write_date(int qnt_tasks, char ** inicial_dates, char** final_dates);
 void write_status(int qnt_tasks, int *status);
 void draw_botton_tasks(int qnt_tasks);
 void draw_options();
+void draw_edit_options();
+
 
 char *dia_atual();
 

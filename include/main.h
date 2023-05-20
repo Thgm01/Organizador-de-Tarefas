@@ -25,6 +25,7 @@ void print_tela_inicial(struct DadosTarefa *data);
 void print_all_tasks(struct DadosTarefa *data);
 void adiciona_tarefa();
 void exclue_tarefa();
+void edita_tarefa();
 
 
 

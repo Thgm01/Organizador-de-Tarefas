@@ -215,13 +215,20 @@ void draw_botton_tasks(int qnt_tasks)
 
 void draw_options()
 {
-    
     center_text(SIZE_MENU, "1 - Adicionar Tarefa",1);
     center_text(SIZE_MENU, "2 - Editar Tarefa",1);
     center_text(SIZE_MENU, "3 - Excluir Tarefa",1);
     center_text(SIZE_MENU, "4 - Alterar Status da tarefa", 1);
     center_text(SIZE_MENU, "5 - Sair do Programa", 1);
-    
+}
+
+void draw_edit_options()
+{
+    center_text(SIZE_MENU, "1 - Editar Titulo",1);
+    center_text(SIZE_MENU, "2 - Editar Descricao",1);
+    center_text(SIZE_MENU, "3 - Editar Data Final",1);
+    center_text(SIZE_MENU, "4 - Editar Status",1);
+
 }
 
 char *dia_atual()
