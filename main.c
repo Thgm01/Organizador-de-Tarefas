@@ -15,7 +15,7 @@ int main(void)
     struct DadosTarefa *dados = le_tarefas();
     do{
         opt=-1;
-
+        system(clear_terminal);
         print_tela_inicial(dados);
 
         printf("\nDigite sua opção: ");
@@ -40,9 +40,12 @@ int main(void)
         case 4:
             
             break;
+        case 5:
+            break;
 
         default:
             draw_menu_header("VALOR INVÁLIDO!");
+            sleep(1.5);
             break;
         }
 
@@ -107,7 +110,6 @@ void print_all_tasks(struct DadosTarefa *data) //terminar
 
 void print_tela_inicial(struct DadosTarefa *data)
 {
-    system(clear_terminal);
     draw_menu_header("TAREFAS");
     print_all_tasks(data);
     draw_menu_options();
@@ -162,8 +164,5 @@ void exclue_tarefa()
 
     rewrite_file(task_number);
 
-
     printf("Tarefa de numero %d excluida!", task_number);
-    sleep(5e-3);
-    sleep(2);
 }
