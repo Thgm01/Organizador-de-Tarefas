@@ -121,7 +121,9 @@ struct DadosTarefa *le_tarefas()
 
     FILE *dados = open_file("r");
 
-    char buffer[20][SIZE_TASK*4];
+    int size = size_file();
+
+    char buffer[size][SIZE_TASK*4];
 
     int cont = 0;
 
@@ -166,29 +168,34 @@ void exclue_tarefa()
 }
 
 void edita_tarefa()
-{
-    draw_menu_edit_options();
-    int opt;
-    printf("Digite a opcao desejada: ");
-    scanf("%d", &opt);
-    
+{  
+    struct DadosTarefa *fas = le_tarefas();
+    draw_menu_edit_options(0, fas);
+
     int task_number;
-    printf("Digite a Tarefa que deseja editar: ");
     scanf("%d", &task_number);
     printf("%d\n", task_number);
 
-    struct DadosTarefa *fas = le_tarefas();
+    draw_menu_edit_options(1, fas);
 
-    char *titulo[1] = {fas[task_number].titulo};
+    printf("%s\n", fas[task_number].titulo);
+
+    char *titulo[SIZE_TASK] = {fas[task_number].titulo};
     char *desc[1] =  {fas[task_number].observacao};
     char *dat_cria[1] = {fas[task_number].data_criacao};
     char *data_final[1] = {fas[task_number].data_final};
     int status[2] = {1,2};
 
     draw_tasks(1, titulo, desc, dat_cria , data_final, status);
+    draw_botton_line(SIZE_MENU, 1);
 
-    int lixo;
-    scanf("%d", &lixo);    
+    int opt;
+    scanf("%d", &opt);
+
+    if(opt == -1) return;
+
+    // int lixo;
+    // scanf("%d", &lixo);    
 
     free(fas);
 }

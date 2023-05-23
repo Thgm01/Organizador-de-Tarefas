@@ -222,12 +222,22 @@ void draw_options()
     center_text(SIZE_MENU, "5 - Sair do Programa", 1);
 }
 
-void draw_edit_options()
+void draw_edit_options(int stage)
 {
-    center_text(SIZE_MENU, "1 - Editar Titulo",1);
-    center_text(SIZE_MENU, "2 - Editar Descricao",1);
-    center_text(SIZE_MENU, "3 - Editar Data Final",1);
-    center_text(SIZE_MENU, "4 - Editar Status",1);
+    if(!stage)
+    {
+        center_text(SIZE_MENU, "Digite o numero da tarefa",1);
+        center_text(SIZE_MENU, "[-1] Voltar ao menu inicial",1);
+    }
+    else
+    {
+        center_text(SIZE_MENU, "1 - Editar Titulo",1);
+        center_text(SIZE_MENU, "2 - Editar Descricao",1);
+        center_text(SIZE_MENU, "3 - Editar Data Final",1);
+        center_text(SIZE_MENU, "4 - Editar Status",1);
+
+    }
+
 
 }
 
