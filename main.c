@@ -180,14 +180,12 @@ void edita_tarefa()
 
     printf("%s\n", fas[task_number].titulo);
 
-    char *titulo[SIZE_TASK] = {fas[task_number].titulo};
-    char *desc[1] =  {fas[task_number].observacao};
-    char *dat_cria[1] = {fas[task_number].data_criacao};
-    char *data_final[1] = {fas[task_number].data_final};
-    int status[2] = {1,2};
+    // char *desc[1] =  {fas[task_number].observacao};
+    // char *dat_cria[1] = {fas[task_number].data_criacao};
+    // char *data_final[1] = {fas[task_number].data_final};
+    // int status[2] = {1,2};
 
-    draw_tasks(1, titulo, desc, dat_cria , data_final, status);
-    draw_botton_line(SIZE_MENU, 1);
+    // draw_tasks(1, titulo, desc, dat_cria , data_final, status);
 
     int opt;
     scanf("%d", &opt);

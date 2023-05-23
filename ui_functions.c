@@ -218,7 +218,7 @@ void draw_options()
     center_text(SIZE_MENU, "1 - Adicionar Tarefa",1);
     center_text(SIZE_MENU, "2 - Editar Tarefa",1);
     center_text(SIZE_MENU, "3 - Excluir Tarefa",1);
-    center_text(SIZE_MENU, "4 - Alterar Status da tarefa", 1);
+    center_text(SIZE_MENU, "4 - Creditos", 1);
     center_text(SIZE_MENU, "5 - Sair do Programa", 1);
 }
 
