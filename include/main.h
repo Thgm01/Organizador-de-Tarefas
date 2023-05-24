@@ -11,10 +11,10 @@
 
 struct DadosTarefa
 {
-    char *titulo;
-    char *observacao;
-    char *data_criacao;
-    char *data_final;
+    char titulo[85];
+    char observacao[85];
+    char data_criacao[15];
+    char data_final[15];
     char status;
 
 };
@@ -22,7 +22,7 @@ struct DadosTarefa
 struct DadosTarefa *le_tarefas();
 char **strip_data(char *data_to_strip); 
 void print_tela_inicial(struct DadosTarefa *data);
-void print_all_tasks(struct DadosTarefa *data);
+void print_all_tasks();
 void adiciona_tarefa();
 void exclue_tarefa();
 void edita_tarefa();

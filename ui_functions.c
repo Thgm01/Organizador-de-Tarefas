@@ -235,6 +235,7 @@ void draw_edit_options(int stage)
         center_text(SIZE_MENU, "2 - Editar Descricao",1);
         center_text(SIZE_MENU, "3 - Editar Data Final",1);
         center_text(SIZE_MENU, "4 - Editar Status",1);
+        center_text(SIZE_MENU, "5 - Voltal ao menu inicial", 1);
 
     }
 

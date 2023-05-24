@@ -13,5 +13,6 @@ void draw_tasks(int qnt_tasks, char ** titles, char **descriptions, char **initi
 void draw_menu_options();
 void draw_empty_tasks();
 void draw_menu_edit_options(int stage, struct DadosTarefa *D);
+void draw_credits();
 
 #endif
