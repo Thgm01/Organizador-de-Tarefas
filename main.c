@@ -141,7 +141,7 @@ struct DadosTarefa *le_tarefas()
     FILE *dados = open_file("r");
 
     char buffer[size][SIZE_TASK*4];
-
+    // testar deixar sem o size
     int cont = 0;
 
     while (fgets(buffer[cont], SIZE_TASK*4, dados) != NULL) 
