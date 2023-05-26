@@ -32,6 +32,7 @@ void write_status(int qnt_tasks, char *status);
 void draw_botton_tasks(int qnt_tasks);
 void draw_options();
 void draw_edit_options(int stage);
+void print_task(int task_number);
 
 
 char *dia_atual();

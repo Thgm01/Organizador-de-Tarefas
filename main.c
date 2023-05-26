@@ -13,7 +13,6 @@ int main(void)
 {
     // print_all_tasks();
     int opt=-1;
-    struct DadosTarefa *dados = le_tarefas();
     do{
         opt=-1;
         system(clear_terminal);
@@ -26,7 +25,6 @@ int main(void)
         {
         case 1: //
             adiciona_tarefa();
-            dados = le_tarefas();
             break;
 
         case 2:
@@ -51,13 +49,8 @@ int main(void)
             
             break;
         }
-
-
-
         sleep(5e-3);
     }while (opt != 5);
-
-    free(dados);
 
     system(clear_terminal);
     draw_menu_header("Programa Encerrado!");
@@ -190,41 +183,42 @@ void exclue_tarefa()
 
 void edita_tarefa()
 {  
-    struct DadosTarefa *fas = le_tarefas();
-    draw_menu_edit_options(0, fas);
+    draw_menu_edit_options(0, -1);
 
     int task_number;
     scanf("%d%*c", &task_number);
     printf("%d\n", task_number);
 
-    if(task_number == -1)
-    {
-        free(fas);
-        return;
-    } 
+    if(task_number == -1) return;
 
-    draw_menu_edit_options(1, fas);
-
-    printf("%s\n", fas[task_number].titulo);
-
-    // char *desc[1] =  {fas[task_number].observacao};
-    // char *dat_cria[1] = {fas[task_number].data_criacao};
-    // char *data_final[1] = {fas[task_number].data_final};
-    // int status[2] = {1,2};
-
-    // draw_tasks(1, titulo, desc, dat_cria , data_final, status);
+    draw_menu_edit_options(1, task_number);
+    print_task(task_number);
+    draw_blank_line(SIZE_MENU);
+    draw_botton_line(SIZE_MENU, 1);
 
     int opt;
     scanf("%d", &opt);
 
-    if(opt == -1)
+    switch(opt)
     {
-        free(fas);
-        return;
-    } 
+        case 1:
+            
+            break;
         
-    // int lixo;
-    // scanf("%d", &lixo);    
+        case 2:
+            break;
 
-    free(fas);
+        case 3:
+            break;
+
+        case 4:
+            break;
+        
+        case 5:
+            return;
+            break;
+    }
+    
+
+        
 }

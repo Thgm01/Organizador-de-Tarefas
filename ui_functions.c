@@ -228,6 +228,9 @@ void draw_edit_options(int stage)
     {
         center_text(SIZE_MENU, "Digite o numero da tarefa",1);
         center_text(SIZE_MENU, "[-1] Voltar ao menu inicial",1);
+        draw_blank_line(SIZE_MENU);
+        draw_botton_line(SIZE_MENU, 1);
+
     }
     else
     {
@@ -236,10 +239,24 @@ void draw_edit_options(int stage)
         center_text(SIZE_MENU, "3 - Editar Data Final",1);
         center_text(SIZE_MENU, "4 - Editar Status",1);
         center_text(SIZE_MENU, "5 - Voltal ao menu inicial", 1);
-
+        draw_blank_line(SIZE_MENU);
+        draw_line_cross(SIZE_MENU, 1);
+        draw_blank_line(SIZE_MENU);
     }
 
 
+}
+
+void print_task(int task_number)
+{
+    struct DadosTarefa *data = le_tarefas();
+    char *titulo[] = {data[task_number].titulo};
+    char *observacao[] = {data[task_number].observacao};
+    char *data_criacao[] = {data[task_number].data_criacao};
+    char *data_final[] = {data[task_number].data_final};
+    char status[] = {data[task_number].status};
+    draw_tasks(1, titulo, observacao, data_criacao, data_final, status);
+    free(data);
 }
 
 char *dia_atual()

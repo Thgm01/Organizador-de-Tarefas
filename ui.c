@@ -46,20 +46,20 @@ void draw_menu_options()
 
 }
 
-void draw_menu_edit_options(int stage, struct DadosTarefa *D)
+void draw_menu_edit_options(int stage, int task)
 {
     system(clear_terminal);
     draw_menu_header("EDITAR TAREFA");
     if(!stage)
     {
-        // print_all_tasks(D);
+        print_all_tasks();
         draw_line_cross(SIZE_MENU, 1);
         draw_blank_line(SIZE_MENU);
 
     }
     draw_edit_options(stage);
-    draw_blank_line(SIZE_MENU);
-    draw_botton_line(SIZE_MENU, 1);
+
+
 }
 
 void draw_credits()
