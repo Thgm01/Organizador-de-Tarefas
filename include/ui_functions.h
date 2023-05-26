@@ -28,10 +28,10 @@ void draw_task_titles(int qnt_tasks, char ** titles);
 void draw_tasks_cross(int qnt_tasks);
 void write_descriptions(int qnt_tasks, char ** descriptions);
 void write_date(int qnt_tasks, char ** inicial_dates, char** final_dates);
-void write_status(int qnt_tasks, int *status);
+void write_status(int qnt_tasks, char *status);
 void draw_botton_tasks(int qnt_tasks);
 void draw_options();
-void draw_edit_options();
+void draw_edit_options(int stage);
 
 
 char *dia_atual();

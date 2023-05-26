@@ -20,9 +20,10 @@ FILE *open_file(char *mode) {
 int size_struct(struct DadosTarefa *stc)
 {
     int size=0;
-    while (stc[size].titulo !=NULL)
+    while (stc[size].titulo != "")
     {
-        size++;
+      printf("%s\n", stc[size].titulo);
+      size++;
     }
     
     return size;

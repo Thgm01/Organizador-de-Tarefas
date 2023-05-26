@@ -11,60 +11,59 @@
 
 int main(void) 
 {
-    print_all_tasks();
-    // int opt=-1;
-    // struct DadosTarefa *dados = le_tarefas();
-    // do{
-    //     opt=-1;
-    //     system(clear_terminal);
-    //     print_tela_inicial(dados);
+    // print_all_tasks();
+    int opt=-1;
+    struct DadosTarefa *dados = le_tarefas();
+    do{
+        opt=-1;
+        system(clear_terminal);
+        print_tela_inicial();
 
-    //     printf("\nDigite sua opção: ");
-    //     scanf("%d%*c", &opt);
-               
+        printf("\nDigite sua opção: ");
+        scanf("%d", &opt);               
 
-    //     switch (opt)
-    //     {
-    //     case 1: //
-    //         adiciona_tarefa();
-    //         dados = le_tarefas();
-    //         break;
+        switch (opt)
+        {
+        case 1: //
+            adiciona_tarefa();
+            dados = le_tarefas();
+            break;
 
-    //     case 2:
-    //         edita_tarefa();            
-    //         break;
+        case 2:
+            edita_tarefa();            
+            break;
 
-    //     case 3:
-    //         exclue_tarefa();
-    //         break;
+        case 3:
+            exclue_tarefa();
+            break;
 
-    //     case 4:
-    //         draw_credits();
-    //         break;
-    //     case 5:
-    //         break;
+        case 4:
+            draw_credits();
+            break;
+        case 5:
+            break;
 
-    //     default:
-    //         system(clear_terminal);
-    //         draw_menu_header("VALOR INVALIDO!");
-    //         draw_botton_line(SIZE_MENU, 1);
-    //         getchar();
+        default:
+            system(clear_terminal);
+            draw_menu_header("VALOR INVALIDO!");
+            draw_botton_line(SIZE_MENU, 1);
+            getchar();
             
-    //         break;
-    //     }
+            break;
+        }
 
 
 
-    //     sleep(5e-3);
-    // }while (opt != 5);
+        sleep(5e-3);
+    }while (opt != 5);
 
-    // free(dados);
+    free(dados);
 
-    // system(clear_terminal);
-    // draw_menu_header("Programa Encerrado!");
-    // draw_botton_line(SIZE_MENU, 1);
+    system(clear_terminal);
+    draw_menu_header("Programa Encerrado!");
+    draw_botton_line(SIZE_MENU, 1);
 
-    // return 0;
+    return 0;
 }
 
 void adiciona_tarefa()
@@ -98,49 +97,53 @@ void print_all_tasks() //terminar
     
     struct DadosTarefa *data = le_tarefas();
 
+    int size = size_file();
+    if (size==0)
+    {
+        center_text(SIZE_MENU, "NENHUMA TAREFA!", 1);
+        draw_blank_line(SIZE_MENU);
+    }
+    else
+    {
+        for(int i=0; i<size -1; i+=2)
+        {
+            char *titulo[] = {data[i].titulo, data[i+1].titulo};
+            char *observacao[] = {data[i].observacao, data[i+1].observacao};
+            char *data_criacao[] = {data[i].data_criacao, data[i+1].data_criacao};
+            char *data_final[] = {data[i].data_final, data[i+1].data_final};
+            char status[] = {data[i].status, data[i+1].status};
+            draw_tasks(2, titulo, observacao, data_criacao, data_final, status);
+        }
+        if(size%2==1)
+        {
+            char *titulo[] = {data[size-1].titulo};
+            char *observacao[] = {data[size-1].observacao};
+            char *data_criacao[] = {data[size-1].data_criacao};
+            char *data_final[] = {data[size-1].data_final};
+            char status[] = {data[size-1].status};
+            draw_tasks(1, titulo, observacao, data_criacao, data_final, status);
 
-    printf("AQUI\n");
-    printf("Main %s", data[5].titulo);
-    // // printf("\n");
-
-    // int size = size_struct(data);
-    // if(size == 0)
-    // {
-    //     draw_empty_tasks();
-    // }
-    // else
-    // {
-    //     // for(int i=0; i<size; i++)
-    //     // {
-            
-    //     // }
-    //     // char **titles = {data[0].titulo, data[1].titulo};
-    //     // char **descriptions = {data[0].observacao, data[1].observacao};
-    //     // char **ini_date = {data[0].data_criacao, data[1].data_criacao};
-    //     // char **fin_date = {data[0].data_final, data[1].data_final}; 
-    //     // int *status = {atoi(data[0].status), atoi(data[1].status)};
-    //     // draw_tasks(2, titles, descriptions, ini_date, fin_date, status);
-    // }
-    // free(data);
+        }
+    }
+    free(data);
     
 }
 
-void print_tela_inicial(struct DadosTarefa *data)
+void print_tela_inicial()
 {
     draw_menu_header("TAREFAS");
-    // print_all_tasks(data);
+    print_all_tasks();
     draw_menu_options();
 }
 
 struct DadosTarefa *le_tarefas()
 {
-    int size = size_file();
-    
+
     struct DadosTarefa *Tarefas = (struct DadosTarefa *)malloc(1*sizeof(struct DadosTarefa));
    
     FILE *dados = open_file("r");
 
-    char buffer[size][SIZE_TASK*4];
+    char buffer[size_file()][SIZE_TASK*4];
     // testar deixar sem o size
     int cont = 0;
 
@@ -182,7 +185,7 @@ void exclue_tarefa()
 
     rewrite_file(task_number);
 
-    printf("Tarefa de numero %d excluida!", task_number);
+    printf("Tarefa de numero %d excluida!\n\n", task_number);
 }
 
 void edita_tarefa()

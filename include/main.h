@@ -21,7 +21,7 @@ struct DadosTarefa
 
 struct DadosTarefa *le_tarefas();
 char **strip_data(char *data_to_strip); 
-void print_tela_inicial(struct DadosTarefa *data);
+void print_tela_inicial();
 void print_all_tasks();
 void adiciona_tarefa();
 void exclue_tarefa();

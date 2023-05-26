@@ -168,15 +168,15 @@ void write_date(int qnt_tasks, char ** inicial_dates, char** final_dates)
     new_line();
 }
 
-void write_status(int qnt_tasks, int *status) // 0 - a fazer, 1 - fazendo, 2 - Travado, 3 - Feito
+void write_status(int qnt_tasks, char *status) // 0 - a fazer, 1 - fazendo, 2 - Travado, 3 - Feito
 {
     draw_vertical_line(1);
 
     for(int i=0; i<qnt_tasks; i++)
     {
         char status_text[30] = "Status: ";
-
-        switch (status[i])
+        int status_num = status[i] - 48;
+        switch (status_num)
         {
         case 0:
             strcat(status_text, "A Fazer.");

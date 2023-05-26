@@ -14,7 +14,7 @@ void draw_menu_header(char* title)
     draw_blank_line(SIZE_MENU);
 }
 
-void draw_tasks(int qnt_tasks, char ** titles, char **descriptions, char **initial_dates, char **final_dates, int *status)
+void draw_tasks(int qnt_tasks, char ** titles, char **descriptions, char **initial_dates, char **final_dates, char *status)
 {    
     draw_top_tasks(qnt_tasks);
     draw_task_titles(qnt_tasks, titles);
@@ -73,5 +73,6 @@ void draw_credits()
     center_text(SIZE_MENU, "Centro Universitario FEI, 2023", 1);
     draw_blank_line(SIZE_MENU);
     draw_botton_line(SIZE_MENU, 1);
+    getchar();
     getchar();
 }
