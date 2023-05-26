@@ -7,6 +7,8 @@ int size_struct(struct DadosTarefa *stc);
 int size_file();
 
 void rewrite_file(int line);
+void edit_task_data(int task_number, int opt);
+
 
 
 

@@ -46,7 +46,7 @@ void draw_menu_options()
 
 }
 
-void draw_menu_edit_options(int stage, int task)
+void draw_menu_edit_options(int stage)
 {
     system(clear_terminal);
     draw_menu_header("EDITAR TAREFA");

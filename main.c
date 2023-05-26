@@ -183,7 +183,7 @@ void exclue_tarefa()
 
 void edita_tarefa()
 {  
-    draw_menu_edit_options(0, -1);
+    draw_menu_edit_options(0);
 
     int task_number;
     scanf("%d%*c", &task_number);
@@ -191,34 +191,15 @@ void edita_tarefa()
 
     if(task_number == -1) return;
 
-    draw_menu_edit_options(1, task_number);
-    print_task(task_number);
+    draw_menu_edit_options(1);
+    print_task(task_number-1);
     draw_blank_line(SIZE_MENU);
     draw_botton_line(SIZE_MENU, 1);
 
     int opt;
     scanf("%d", &opt);
 
-    switch(opt)
-    {
-        case 1:
-            
-            break;
-        
-        case 2:
-            break;
-
-        case 3:
-            break;
-
-        case 4:
-            break;
-        
-        case 5:
-            return;
-            break;
-    }
-    
-
+    if(opt==5) return;
+    else edit_task_data(task_number, opt);
         
 }
