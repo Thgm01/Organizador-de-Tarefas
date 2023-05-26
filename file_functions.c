@@ -99,7 +99,7 @@ void edit_task_data(int task_number, int opt)
     break;
 
   case 4:
-    data[task_number-1].status, buffer[0];
+    data[task_number-1].status = buffer[0];
     break;
   default:
     break;
