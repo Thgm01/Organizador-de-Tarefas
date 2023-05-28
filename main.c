@@ -11,8 +11,7 @@
 
 int main(void) 
 {
-    // print_all_tasks();
-    int opt=-1;
+    int opt;
     do{
         opt=-1;
         system(clear_terminal);
@@ -21,9 +20,9 @@ int main(void)
         printf("\nDigite sua opção: ");
         scanf("%d", &opt);               
 
-        switch (opt)
+        switch (opt)  //
         {
-        case 1: //
+        case 1: //Seleciona o que deve ser executado em cada opção
             adiciona_tarefa();
             break;
 
@@ -66,39 +65,39 @@ void adiciona_tarefa()
     char respostas[4][SIZE_TASK-2];
     getchar();
 
-    for(int i=0; i<4; i++)
+    for(int i=0; i<4; i++) // Recebe as informações
     {
         char *buffer[SIZE_TASK-2];
         printf("Digite %s", perguntas[i]);
         fgets(respostas[i], (SIZE_TASK-2), stdin);
-        respostas[i][strcspn(respostas[i], "\n")] = 0;
+        respostas[i][strcspn(respostas[i], "\n")] = 0; // Retira o \n das strigns lidas 
 
     }
 
     char formated[4*SIZE_TASK];
 
-    snprintf(formated, sizeof(formated), "%s,%s,%s,%s,%s\n", respostas[0], respostas[1], dia_atual(), respostas[2], respostas[3]);
+    snprintf(formated, sizeof(formated), "%s,%s,%s,%s,%s\n", respostas[0], respostas[1], dia_atual(), respostas[2], respostas[3]); //transforma o array de strings em uma unica separada por virgula
     printf("%s\n", formated);
-    fprintf(dados, "%s", formated);
+    fprintf(dados, "%s", formated); //insire nos arquivos
 
     fclose(dados);
     
 }
 
-void print_all_tasks() //terminar
+void print_all_tasks() //Função para imprimir todas as tarefas do arquivo
 {
     
-    struct DadosTarefa *data = le_tarefas();
+    struct DadosTarefa *data = le_tarefas(); // função para abrir o arquivo, caso não abra ele é criado e abre
 
     int size = size_file();
-    if (size==0)
+    if (size==0) //Caso não exista tarefas
     {
         center_text(SIZE_MENU, "NENHUMA TAREFA!", 1);
         draw_blank_line(SIZE_MENU);
     }
     else
     {
-        for(int i=0; i<size -1; i+=2)
+        for(int i=0; i<size -1; i+=2) //imprime na tela os pares de tarefas
         {
             char *titulo[] = {data[i].titulo, data[i+1].titulo};
             char *observacao[] = {data[i].observacao, data[i+1].observacao};
@@ -107,7 +106,7 @@ void print_all_tasks() //terminar
             char status[] = {data[i].status, data[i+1].status};
             draw_tasks(2, titulo, observacao, data_criacao, data_final, status);
         }
-        if(size%2==1)
+        if(size%2==1) // caso o número de tarefas seja impar ele imprime a última tarefa
         {
             char *titulo[] = {data[size-1].titulo};
             char *observacao[] = {data[size-1].observacao};
@@ -122,27 +121,26 @@ void print_all_tasks() //terminar
     
 }
 
-void print_tela_inicial()
+void print_tela_inicial() //função para imprimir a tela inicial
 {
     draw_menu_header("TAREFAS");
     print_all_tasks();
     draw_menu_options();
 }
 
-struct DadosTarefa *le_tarefas()
+struct DadosTarefa *le_tarefas() // função que le todas as tarefas do arquivo e armazena em um array de struct
 {
 
     struct DadosTarefa *Tarefas = (struct DadosTarefa *)malloc(1*sizeof(struct DadosTarefa));
    
     FILE *dados = open_file("r");
 
-    char buffer[size_file()][SIZE_TASK*4];
-    // testar deixar sem o size
+    char buffer[size_file()][SIZE_TASK*4]; //buffer temporário para receber as linhas lidas
     int cont = 0;
 
-    while (fgets(buffer[cont], SIZE_TASK*4, dados) != NULL) 
+    while (fgets(buffer[cont], SIZE_TASK*4, dados) != NULL) // separa as informações em seus respectivos argumentos da struct
     {
-        strcpy(Tarefas[cont].titulo, strtok(buffer[cont], ","));
+        strcpy(Tarefas[cont].titulo, strtok(buffer[cont], ",")); //divide a string quando há uma virgula
         strcpy(Tarefas[cont].observacao, strtok(NULL, ","));
         strcpy(Tarefas[cont].data_criacao, strtok(NULL, ","));
         strcpy(Tarefas[cont].data_final, strtok(NULL, ","));        
@@ -156,32 +154,18 @@ struct DadosTarefa *le_tarefas()
     return Tarefas;
 }
 
-char **strip_data(char *data_to_strip) 
-{
-    char *stripped_data[5];
-
-    stripped_data[0] = strtok(data_to_strip, ",");
-    for (int i = 1; i < 5; i++) 
-    {
-        stripped_data[i] = strtok(NULL, ",");
-    }
-    char **res = stripped_data;
-
-    return res;
-}
-
-void exclue_tarefa()
+void exclue_tarefa() // função para apagar a tarefa de número escolido
 {
     int task_number;
     printf("Qual Tarefa deseja excluir? ");
     scanf("%d", &task_number);
 
-    rewrite_file(task_number);
+    rewrite_file(task_number); // função que reescreve o arquivo porém sem a linha que foi escolhida para ser removida
 
     printf("Tarefa de numero %d excluida!\n\n", task_number);
 }
 
-void edita_tarefa()
+void edita_tarefa() //função para editar tarefa
 {  
     draw_menu_edit_options(0);
 
@@ -200,6 +184,6 @@ void edita_tarefa()
     scanf("%d", &opt);
 
     if(opt==5) return;
-    else edit_task_data(task_number, opt);
+    else edit_task_data(task_number, opt); // remove a taréfa temporariamente e reescreve editada no final do arquivo
         
 }
